@@ -81,6 +81,8 @@ class HomeViewController: UIViewController {
     
     @objc func viewAll() {
         print("Button pressed!")
+        let viewController = TransactionsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
