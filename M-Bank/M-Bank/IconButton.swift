@@ -12,6 +12,7 @@ class IconButton: UIButton {
     enum ButtonType: String {
         case back = "chevron.left"
         case more = "ellipsis.circle"
+        case calendar = "calendar"
     }
 
     init(buttonType: ButtonType) {

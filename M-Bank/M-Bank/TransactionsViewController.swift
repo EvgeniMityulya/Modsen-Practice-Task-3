@@ -39,6 +39,7 @@ class TransactionsViewController: UIViewController {
     @objc func openFilter() {
         let nav = UINavigationController(rootViewController: FilterViewController())
         self.present(nav, animated: true, completion: nil)
+
     }
 }
 

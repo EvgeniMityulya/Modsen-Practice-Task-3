@@ -12,6 +12,8 @@
 		68BA98EE2C2D4EC500BCD943 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */; };
 		68BA98F02C2D68D900BCD943 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98EF2C2D68D900BCD943 /* AccountTableViewCell.swift */; };
 		68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */; };
+		68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */; };
+		68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F5612C34778400EF6855 /* CustomButton.swift */; };
 		68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */; };
 		68FEFA832C33184F00E2C16B /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA822C33184F00E2C16B /* IconButton.swift */; };
 		68FEFA852C331C8200E2C16B /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA842C331C8200E2C16B /* FilterViewController.swift */; };
@@ -29,6 +31,8 @@
 		68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		68BA98EF2C2D68D900BCD943 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
+		68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		68D8F5612C34778400EF6855 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		68FEFA822C33184F00E2C16B /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		68FEFA842C331C8200E2C16B /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				68FEFA882C33272300E2C16B /* CustomTextField.swift */,
 				68FEFA822C33184F00E2C16B /* IconButton.swift */,
+				68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */,
+				68D8F5612C34778400EF6855 /* CustomButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -202,8 +208,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8489558E2C2C5F2B00AFB43B /* HomeViewController.swift in Sources */,
+				68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */,
 				68BA98EA2C2D495D00BCD943 /* Account.swift in Sources */,
 				68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */,
+				68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */,
 				8489558A2C2C5F2B00AFB43B /* AppDelegate.swift in Sources */,
 				68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */,
 				68FEFA852C331C8200E2C16B /* FilterViewController.swift in Sources */,
