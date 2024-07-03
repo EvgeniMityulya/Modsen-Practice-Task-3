@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		689C41E42C35A7DE00B5D34E /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41E32C35A7DE00B5D34E /* Transactions.swift */; };
 		68BA98EA2C2D495D00BCD943 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98E92C2D495D00BCD943 /* Account.swift */; };
 		68BA98EC2C2D4A1200BCD943 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98EB2C2D4A1200BCD943 /* Transaction.swift */; };
 		68BA98EE2C2D4EC500BCD943 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */; };
@@ -14,9 +15,10 @@
 		68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */; };
 		68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */; };
 		68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F5612C34778400EF6855 /* CustomButton.swift */; };
+		68D8F56A2C3529C700EF6855 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */; };
+		68D8F56C2C352A2700EF6855 /* FilterBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F56B2C352A2700EF6855 /* FilterBottomSheetViewController.swift */; };
 		68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */; };
 		68FEFA832C33184F00E2C16B /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA822C33184F00E2C16B /* IconButton.swift */; };
-		68FEFA852C331C8200E2C16B /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA842C331C8200E2C16B /* FilterViewController.swift */; };
 		68FEFA892C33272300E2C16B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA882C33272300E2C16B /* CustomTextField.swift */; };
 		8489558A2C2C5F2B00AFB43B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848955892C2C5F2B00AFB43B /* AppDelegate.swift */; };
 		8489558C2C2C5F2B00AFB43B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489558B2C2C5F2B00AFB43B /* SceneDelegate.swift */; };
@@ -26,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		689C41E32C35A7DE00B5D34E /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
 		68BA98E92C2D495D00BCD943 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		68BA98EB2C2D4A1200BCD943 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
@@ -33,9 +36,10 @@
 		68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		68D8F5612C34778400EF6855 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		68D8F56B2C352A2700EF6855 /* FilterBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetViewController.swift; sourceTree = "<group>"; };
 		68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		68FEFA822C33184F00E2C16B /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
-		68FEFA842C331C8200E2C16B /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		68FEFA882C33272300E2C16B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		848955862C2C5F2B00AFB43B /* M-Bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "M-Bank.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848955892C2C5F2B00AFB43B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			children = (
 				68BA98E92C2D495D00BCD943 /* Account.swift */,
 				68BA98EB2C2D4A1200BCD943 /* Transaction.swift */,
+				689C41E32C35A7DE00B5D34E /* Transactions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 		68FEFA872C3326F200E2C16B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				68FEFA862C3325AA00E2C16B /* Cells */,
 				68FEFA882C33272300E2C16B /* CustomTextField.swift */,
 				68FEFA822C33184F00E2C16B /* IconButton.swift */,
 				68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */,
@@ -126,13 +132,13 @@
 			isa = PBXGroup;
 			children = (
 				68FEFA872C3326F200E2C16B /* Views */,
-				68FEFA862C3325AA00E2C16B /* Cells */,
 				68BA98F12C2D6CD600BCD943 /* Extensions */,
 				68BA98E82C2D493800BCD943 /* Models */,
 				68BA98E72C2D46F900BCD943 /* Common */,
 				8489558D2C2C5F2B00AFB43B /* HomeViewController.swift */,
 				68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */,
-				68FEFA842C331C8200E2C16B /* FilterViewController.swift */,
+				68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */,
+				68D8F56B2C352A2700EF6855 /* FilterBottomSheetViewController.swift */,
 			);
 			path = "M-Bank";
 			sourceTree = "<group>";
@@ -208,13 +214,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8489558E2C2C5F2B00AFB43B /* HomeViewController.swift in Sources */,
+				68D8F56A2C3529C700EF6855 /* BottomSheetViewController.swift in Sources */,
 				68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */,
+				68D8F56C2C352A2700EF6855 /* FilterBottomSheetViewController.swift in Sources */,
 				68BA98EA2C2D495D00BCD943 /* Account.swift in Sources */,
 				68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */,
+				689C41E42C35A7DE00B5D34E /* Transactions.swift in Sources */,
 				68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */,
 				8489558A2C2C5F2B00AFB43B /* AppDelegate.swift in Sources */,
 				68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */,
-				68FEFA852C331C8200E2C16B /* FilterViewController.swift in Sources */,
 				68FEFA832C33184F00E2C16B /* IconButton.swift in Sources */,
 				8489558C2C2C5F2B00AFB43B /* SceneDelegate.swift in Sources */,
 				68FEFA892C33272300E2C16B /* CustomTextField.swift in Sources */,

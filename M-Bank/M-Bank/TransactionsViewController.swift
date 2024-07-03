@@ -9,13 +9,7 @@ import UIKit
 
 class TransactionsViewController: UIViewController {
     
-
-    let transactions = [
-        Transaction(company: "OOO \"Company\"", date: "01.06.2024", amount: 10.09, status: .executed),
-        Transaction(company: "OOO \"Company2\"", date: "02.06.2024", amount: 10.09, status: .declined),
-        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .inProgress),
-        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .executed),
-    ]
+    private let transactions = Transactions()
         
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .insetGrouped)
@@ -37,9 +31,8 @@ class TransactionsViewController: UIViewController {
     }
     
     @objc func openFilter() {
-        let nav = UINavigationController(rootViewController: FilterViewController())
-        self.present(nav, animated: true, completion: nil)
-
+        let vc = FilterBottomSheetViewController()
+        presentBottomSheet(viewController: vc)
     }
 }
 
@@ -73,7 +66,7 @@ extension TransactionsViewController {
 extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        transactions.count
+        transactions.transactions.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,7 +80,7 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
             ) as? TransactionTableViewCell else {
                 fatalError("cell did not")
             }
-            cell.configure(with: transactions[indexPath.row])
+        cell.configure(with: transactions.transactions[indexPath.row])
             return cell
     }
 }

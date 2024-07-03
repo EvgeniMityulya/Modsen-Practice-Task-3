@@ -32,7 +32,8 @@ enum TransactionStatus {
 
 struct Transaction {
     let company: String
-    let date: String
-    let amount: Float
+    let number: String
+    let date: Date
     let status: TransactionStatus
+    let amount: Float
 }

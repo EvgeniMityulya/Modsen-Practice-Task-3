@@ -1,22 +1,18 @@
 //
-//  FilterViewController.swift
+//  DemoBottomSheetViewController.swift
 //  M-Bank
 //
-//  Created by Denis Haritonenko on 1.07.24.
+//  Created by Denis Haritonenko on 3.07.24.
 //
 
 import UIKit
 
-class FilterViewController: UIViewController {
+class FilterBottomSheetViewController: BottomSheetViewController {
     
-    private let startDate: Date? = nil
-    private let endDate: Date? = nil
-        
+    // MARK: - UI
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -33,7 +29,6 @@ class FilterViewController: UIViewController {
     
     private let startDateLabel = CustomLabel(with: "Start date")
     private let startDateTextField = CustomTextField(with: "Select start date")
-    private let calendarButton = IconButton(buttonType: .calendar)
 
     private let endDateLabel = CustomLabel(with: "End date")
     private let endDateTextField = CustomTextField(with: "Select end date")
@@ -75,71 +70,71 @@ class FilterViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
+    private lazy var contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.spacing = 16
+        return view
+    }()
+    
+    private let stackSpacer1: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 203).isActive = true
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let stackSpacer2: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 292).isActive = true
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // MARK: - Init and setup
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupView()
+        setupTargets()
     }
     
-    @objc func startDatePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        let selectedDate = dateFormatter.string(from: sender.date)
-        startDateTextField.text = selectedDate
-        startDatePickerContainerView.isHidden = true
-    }
-    
-    @objc func endDatePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        let selectedDate = dateFormatter.string(from: sender.date)
-        endDateTextField.text = selectedDate
-        endDatePickerContainerView.isHidden = true
-    }
-    
-    @objc func openStartDatePicker() {
-        if !endDatePickerContainerView.isHidden {
-            endDatePickerContainerView.isHidden.toggle()
-        }
-        startDatePickerContainerView.isHidden.toggle()
-    }
-    
-    @objc func openEndDatePicker() {
-        if !startDatePickerContainerView.isHidden {
-            startDatePickerContainerView.isHidden.toggle()
-        }
-        endDatePickerContainerView.isHidden.toggle()
-    }
-}
-
-private extension FilterViewController {
-    
-    func setupUI() {
-        self.view.backgroundColor = .black
+    private func setupView() {
         
-        self.setupTargets()
-                
+        // Main content to be added in bottom sheet
         stackView.addArrangedSubview(
             filterByDateLabel,
             startDateLabel,
             startDateTextField,
             endDateLabel,
             endDateTextField,
+            stackSpacer1,
+            stackSpacer2,
             submitButton
         )
         
-        view.addSubview(stackView)
+        stackSpacer1.isHidden = true
+        stackSpacer2.isHidden = true
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor)
-        ])
+        self.setContent(content: stackView)
+
+
+        
+        
         
         startDatePickerContainerView.addSubview(startDatePicker)
-        view.addSubview(startDatePickerContainerView)
+        contentView.addSubview(startDatePickerContainerView)
         startDatePickerContainerView.isHidden = true
         NSLayoutConstraint.activate([
             startDatePicker.topAnchor.constraint(equalTo: startDatePickerContainerView.topAnchor),
@@ -148,12 +143,13 @@ private extension FilterViewController {
             startDatePicker.bottomAnchor.constraint(equalTo: startDatePickerContainerView.bottomAnchor),
             
             startDatePickerContainerView.topAnchor.constraint(equalTo: startDateTextField.bottomAnchor, constant: 2),
-            startDatePickerContainerView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
-            startDatePickerContainerView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor),
+            startDatePickerContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            startDatePickerContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            startDatePickerContainerView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         endDatePickerContainerView.addSubview(endDatePicker)
-        view.addSubview(endDatePickerContainerView)
+        contentView.addSubview(endDatePickerContainerView)
         endDatePickerContainerView.isHidden = true
         NSLayoutConstraint.activate([
             endDatePicker.topAnchor.constraint(equalTo: endDatePickerContainerView.topAnchor),
@@ -162,9 +158,11 @@ private extension FilterViewController {
             endDatePicker.bottomAnchor.constraint(equalTo: endDatePickerContainerView.bottomAnchor),
             
             endDatePickerContainerView.topAnchor.constraint(equalTo: endDateTextField.bottomAnchor, constant: 2),
-            endDatePickerContainerView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
-            endDatePickerContainerView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor),
+            endDatePickerContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            endDatePickerContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            endDatePickerContainerView.heightAnchor.constraint(equalToConstant: 300)
         ])
+        
     }
     
     func setupTargets() {
@@ -195,5 +193,55 @@ private extension FilterViewController {
         // Set endDateContainerView as the right view of endDateTextField
         endDateTextField.rightView = endDateContainerView
         endDateTextField.rightViewMode = .always
+    }
+
+    @objc private func handleDismissButton() {
+        self.dismissBottomSheet()
+    }
+    
+    @objc func startDatePickerValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        let selectedDate = dateFormatter.string(from: sender.date)
+        startDateTextField.text = selectedDate
+        toggleStartDate()
+    }
+    
+    @objc func endDatePickerValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        let selectedDate = dateFormatter.string(from: sender.date)
+        endDateTextField.text = selectedDate
+        toggleEndDate()
+    }
+    
+    @objc func openStartDatePicker() {
+        if !endDatePickerContainerView.isHidden {
+            toggleEndDate()
+        }
+        toggleStartDate()
+    }
+    
+    @objc func openEndDatePicker() {
+        if !startDatePickerContainerView.isHidden {
+            toggleStartDate()
+        }
+        toggleEndDate()
+    }
+    
+    private func toggleStartDate() {
+        startDatePickerContainerView.isHidden.toggle()
+        UIView.animate(withDuration: 0.3){
+            self.stackSpacer1.isHidden.toggle()
+        }
+    }
+    
+    private func toggleEndDate() {
+        endDatePickerContainerView.isHidden.toggle()
+        UIView.animate(withDuration: 0.3){
+            self.stackSpacer2.isHidden.toggle()
+        }
     }
 }
