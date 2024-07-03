@@ -9,11 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private let transactions = [
-        Transaction(company: "OOO \"Company\"", date: "01.06.2024", amount: 10.09, status: .executed),
-        Transaction(company: "OOO \"Company2\"", date: "02.06.2024", amount: 10.09, status: .declined),
-        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .inProgress),
-        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .executed),
+    private let transactions: [Transaction] = [
+//        Transaction(company: "OOO \"Company\"", date: "01.06.2024", amount: 10.09, status: .executed),
+//        Transaction(company: "OOO \"Company2\"", date: "02.06.2024", amount: 10.09, status: .declined),
+//        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .inProgress),
+//        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .executed),
     ]
     
     private let currentAccount = Account(name: "Saving Account", number: "91212192291221", cardLastDigits: "•••• 1234")

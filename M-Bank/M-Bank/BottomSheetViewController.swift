@@ -194,10 +194,3 @@ class BottomSheetViewController: UIViewController {
         view.layoutIfNeeded()
     }
 }
-
-extension UIViewController {
-    func presentBottomSheet(viewController: BottomSheetViewController) {
-        viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: false, completion: nil)
-    }
-}
