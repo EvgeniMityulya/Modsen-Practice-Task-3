@@ -10,15 +10,21 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let transactions: [Transaction] = [
-//        Transaction(company: "OOO \"Company\"", date: "01.06.2024", amount: 10.09, status: .executed),
-//        Transaction(company: "OOO \"Company2\"", date: "02.06.2024", amount: 10.09, status: .declined),
-//        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .inProgress),
-//        Transaction(company: "OOO \"Company\"", date: "02.06.2024", amount: 10.09, status: .executed),
+       
     ]
     
-    private let currentAccount = Account(name: "Saving Account", number: "91212192291221", cardLastDigits: "•••• 1234")
+    private let currentAccount = Account(
+        id: UUID(),
+        name: "John Doe",
+        number: "12345678901234",
+        card: "1234567890123456",
+        transactions: [
+            Transaction(company: "Amazon", number: "123456789012", date: Date(), status: .executed, amount: 150.75),
+            Transaction(company: "Apple", number: "234567890123", date: Date(), status: .declined, amount: 200.50)
+        ]
+    )
     
-    private let transactionTableView: UITableView = {
+    private let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .insetGrouped)
         tv.allowsSelection = true
         tv.register(AccountTableViewCell.self, forCellReuseIdentifier: AccountTableViewCell.identifier)
@@ -26,21 +32,14 @@ class HomeViewController: UIViewController {
         return tv
     }()
     
-    private let recentTransactionsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Recent Transactions"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let recentTransactionsLabel = TitleLabel(with: "Recent Transactions", ofSize: 28)
     
     private let viewAllButton: UIButton = {
         let button = UIButton()
         button.setTitle("VIEW ALL", for: .normal)
         button.backgroundColor = .clear
         button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        button.titleLabel?.font = .sfProText(ofSize: 13, style: .regular)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(viewAll), for: .touchUpInside)
         return button
@@ -56,14 +55,7 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private let accountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Account"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let accountLabel = TitleLabel(with: "Account", ofSize: 28)
     
     private lazy var accountTableViewHeader: UIStackView = {
         let view = UIStackView()
@@ -90,18 +82,18 @@ extension HomeViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         
-        self.view.addSubview(transactionTableView)
-        self.transactionTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(tableView)
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            transactionTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            transactionTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            transactionTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            transactionTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        transactionTableView.delegate = self
-        transactionTableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
@@ -140,7 +132,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             ) as? AccountTableViewCell else {
                 fatalError("cell did not")
             }
-            cell.configure(with: currentAccount)
+            cell.configure(with: currentAccount, for: .button)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(
@@ -156,5 +148,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return section == 0 ? accountTableViewHeader : transactionsTableViewHeader
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let vc = AccountsViewController()
+            presentBottomSheet(viewController: vc)
+        }
     }
 }
