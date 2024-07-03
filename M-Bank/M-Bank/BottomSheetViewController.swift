@@ -19,7 +19,7 @@ class BottomSheetViewController: UIViewController {
     
     // MARK: - Subviews
     /// Main bottom sheet container view
-    private lazy var mainContainerView: UIView = {
+     lazy var mainContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.clipsToBounds = true
@@ -112,8 +112,8 @@ class BottomSheetViewController: UIViewController {
         mainContainerView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: 24),
-            contentView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -24),
+            contentView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 0),
             contentView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor, constant: -32)
         ])

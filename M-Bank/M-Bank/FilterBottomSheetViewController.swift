@@ -27,10 +27,10 @@ class FilterBottomSheetViewController: BottomSheetViewController {
         return label
     }()
     
-    private let startDateLabel = CustomLabel(with: "Start date")
+    private let startDateLabel = TextLabel(with: "Start date")
     private let startDateTextField = CustomTextField(with: "Select start date")
 
-    private let endDateLabel = CustomLabel(with: "End date")
+    private let endDateLabel = TextLabel(with: "End date")
     private let endDateTextField = CustomTextField(with: "Select end date")
 
     private let submitButton = CustomButton(with: "Submit")

@@ -9,7 +9,7 @@ import UIKit
 
 class TransactionsViewController: UIViewController {
     
-    private let transactions = Transactions()
+    private let transactions: [Transaction] = []
         
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .insetGrouped)
@@ -66,7 +66,7 @@ extension TransactionsViewController {
 extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        transactions.transactions.count
+        transactions.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,13 +80,13 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
             ) as? TransactionTableViewCell else {
                 fatalError("cell did not")
             }
-        cell.configure(with: transactions.transactions[indexPath.row])
+        cell.configure(with: transactions[indexPath.row])
             return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = TransactionInfoViewController(with: transactions.transactions[indexPath.row])
+        let vc = TransactionInfoViewController(with: transactions[indexPath.row])
         presentBottomSheet(viewController: vc)
     }
 }

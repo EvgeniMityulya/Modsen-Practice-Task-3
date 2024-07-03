@@ -1,23 +1,24 @@
 //
-//  CustomLabel.swift
+//  TitleLabel.swift
 //  M-Bank
 //
-//  Created by Denis Haritonenko on 2.07.24.
+//  Created by Denis Haritonenko on 3.07.24.
 //
 
 import UIKit
 
-class CustomLabel: UILabel {
+class TitleLabel: UILabel {
 
-    init(with text: String) {
+    init(with text: String, ofSize size: CGFloat = 28) {
         super.init(frame: .zero)
         self.text = text
         self.textColor = .white
-        self.font = UIFont.sfProText(ofSize: 17, style: .regular)
+        self.font = UIFont.sfProDisplay(ofSize: size, style: .bold)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }

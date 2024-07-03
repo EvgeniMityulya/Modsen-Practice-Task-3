@@ -29,11 +29,11 @@ class TransactionInfoViewController: BottomSheetViewController {
         return label
     }()
     
-    private let companyLabel = CustomLabel(with: "Transaction was applied in")
-    private let numberLabel = CustomLabel(with: "Transaction number")
-    private let dateLabel = CustomLabel(with: "Date")
-    private let statusLabel = CustomLabel(with: "Transaction status")
-    private let amountLabel = CustomLabel(with: "Amount")
+    private let companyLabel = TextLabel(with: "Transaction was applied in")
+    private let numberLabel = TextLabel(with: "Transaction number")
+    private let dateLabel = TextLabel(with: "Date")
+    private let statusLabel = TextLabel(with: "Transaction status")
+    private let amountLabel = TextLabel(with: "Amount")
     
     private let companyTextField = InfoTextField()
     private let numberTextField = InfoTextField()
@@ -89,6 +89,6 @@ class TransactionInfoViewController: BottomSheetViewController {
     }
     
     @objc private func handleOkayButton() {
-            self.dismissBottomSheet()
+        self.dismissBottomSheet()
     }
 }

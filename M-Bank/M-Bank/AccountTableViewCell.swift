@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum CellPurpose {
+    case button
+    case selection
+}
+
 class AccountTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: AccountTableViewCell.self)
@@ -61,10 +66,18 @@ class AccountTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    func configure(with account: Account) {
+    func configure(with account: Account, for purpose: CellPurpose) {
         self.accountNameLabel.text = account.name
         self.accountNumberLabel.text = account.number
-        self.cardNumberLabel.text = account.cardLastDigits
+        self.cardNumberLabel.text = account.card
+        
+        if purpose == .selection {
+            chevronImageView.isHidden = true
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor(named: "selection")
+            selectedBackgroundView = backgroundView
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
