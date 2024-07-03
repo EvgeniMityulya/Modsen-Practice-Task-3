@@ -9,20 +9,26 @@ import UIKit
 
 class BottomSheetViewController: UIViewController {
     
-    private let minDismissiblePanHeight = CGFloat(50)
-    private let maxDimmedAlpha = 0.0
+    // MARK: - Properties
+    /// Maximum alpha for dimmed view
+    private let maxDimmedAlpha: CGFloat = 0.3
+    /// Minimum drag vertically that enable bottom sheet to dismiss
+    private let minDismissiblePanHeight: CGFloat = 20
+    /// Minimum spacing between the top edge and bottom sheet
+    private var minTopSpacing: CGFloat = 80
     
+    // MARK: - Subviews
     /// Main bottom sheet container view
     private lazy var mainContainerView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
         view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     /// View to to hold dynamic content
-    lazy var contentView: UIView = {
+    public lazy var contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -36,8 +42,7 @@ class BottomSheetViewController: UIViewController {
         return view
     }()
     
-    
-    /// Top bar line
+    /// Top view bar
     private lazy var barLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
@@ -50,26 +55,23 @@ class BottomSheetViewController: UIViewController {
     private lazy var dimmedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
+        view.backgroundColor = .black
         view.alpha = 0
         return view
     }()
-  
-    private var minTopSpacing: CGFloat = 80
-        
+    
     // MARK: - View Setup
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupGestures()
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animatePresent()
     }
     
-    // 1
     private func setupViews() {
         view.backgroundColor = .clear
         view.addSubview(dimmedView)
@@ -82,25 +84,22 @@ class BottomSheetViewController: UIViewController {
         ])
 
         // Container View
-        // All sides are set without spacing, except the top edge have a minimum space
-        // So the bottom sheet view won't go higher
         view.addSubview(mainContainerView)
-            NSLayoutConstraint.activate([
-            mainContainerView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: minTopSpacing),
+        NSLayoutConstraint.activate([
             mainContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainContainerView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: minTopSpacing)
         ])
-            
-            // Top draggable bar view
+        
+        // Top draggable bar view
         mainContainerView.addSubview(topBarView)
         NSLayoutConstraint.activate([
             topBarView.topAnchor.constraint(equalTo: mainContainerView.topAnchor),
             topBarView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
             topBarView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
-            topBarView.heightAnchor.constraint(equalToConstant: 40)
+            topBarView.heightAnchor.constraint(equalToConstant: 54)
         ])
-        // Add fancy bar line
         topBarView.addSubview(barLineView)
         NSLayoutConstraint.activate([
             barLineView.centerXAnchor.constraint(equalTo: topBarView.centerXAnchor),
@@ -110,18 +109,16 @@ class BottomSheetViewController: UIViewController {
         ])
         
         // Content View
-        // This is where content can be dynamically set
         mainContainerView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: 24),
             contentView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -24),
-            contentView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 16),
+            contentView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 0),
             contentView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor, constant: -32)
         ])
     }
-
-        // 2
+    
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapDimmedView))
         dimmedView.addGestureRecognizer(tapGesture)
@@ -132,7 +129,10 @@ class BottomSheetViewController: UIViewController {
         topBarView.addGestureRecognizer(panGesture)
     }
 
-        // 3
+    @objc private func handleTapDimmedView() {
+        dismissBottomSheet()
+    }
+    
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         // get drag direction
@@ -159,12 +159,6 @@ class BottomSheetViewController: UIViewController {
         }
     }
 
-       // 4
-    @objc private func handleTapDimmedView() {
-        dismissBottomSheet()
-    }
-
-        // 5
     private func animatePresent() {
         dimmedView.alpha = 0
         mainContainerView.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
@@ -177,8 +171,7 @@ class BottomSheetViewController: UIViewController {
             self.dimmedView.alpha = self.maxDimmedAlpha
         }
     }
-    
-    // 6
+
     func dismissBottomSheet() {
         UIView.animate(withDuration: 0.2, animations: {  [weak self] in
             guard let self = self else { return }
@@ -188,8 +181,7 @@ class BottomSheetViewController: UIViewController {
             self?.dismiss(animated: false)
         })
     }
-        
-    // 7
+    
     // sub-view controller will call this function to set content
     func setContent(content: UIView) {
         contentView.addSubview(content)
@@ -204,7 +196,6 @@ class BottomSheetViewController: UIViewController {
 }
 
 extension UIViewController {
-    // 8
     func presentBottomSheet(viewController: BottomSheetViewController) {
         viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: false, completion: nil)
