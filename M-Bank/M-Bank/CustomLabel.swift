@@ -13,7 +13,7 @@ class CustomLabel: UILabel {
         super.init(frame: .zero)
         self.text = text
         self.textColor = .white
-        self.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        self.font = UIFont.sfProText(ofSize: 17, style: .regular)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

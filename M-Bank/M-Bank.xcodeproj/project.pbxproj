@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		689C41E42C35A7DE00B5D34E /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41E32C35A7DE00B5D34E /* Transactions.swift */; };
+		689C41E62C35AA7500B5D34E /* TransactionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41E52C35AA7500B5D34E /* TransactionInfoViewController.swift */; };
+		689C41E92C35ABE700B5D34E /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41E82C35ABE700B5D34E /* UIViewController + Extensions.swift */; };
+		689C41EB2C35AD0D00B5D34E /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41EA2C35AD0D00B5D34E /* UIFont + Extensions.swift */; };
+		689C41F02C35B30500B5D34E /* InfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41EF2C35B30500B5D34E /* InfoTextField.swift */; };
+		689C41F22C35C0BB00B5D34E /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 689C41F12C35C0BB00B5D34E /* SF-Pro-Text-Regular.otf */; };
+		689C41F42C35C0CA00B5D34E /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 689C41F32C35C0CA00B5D34E /* SF-Pro-Display-Bold.otf */; };
+		689C41F62C35C2EC00B5D34E /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689C41F52C35C2EC00B5D34E /* Date + Extensions.swift */; };
 		68BA98EA2C2D495D00BCD943 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98E92C2D495D00BCD943 /* Account.swift */; };
 		68BA98EC2C2D4A1200BCD943 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98EB2C2D4A1200BCD943 /* Transaction.swift */; };
 		68BA98EE2C2D4EC500BCD943 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */; };
@@ -29,6 +36,13 @@
 
 /* Begin PBXFileReference section */
 		689C41E32C35A7DE00B5D34E /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
+		689C41E52C35AA7500B5D34E /* TransactionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoViewController.swift; sourceTree = "<group>"; };
+		689C41E82C35ABE700B5D34E /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
+		689C41EA2C35AD0D00B5D34E /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
+		689C41EF2C35B30500B5D34E /* InfoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTextField.swift; sourceTree = "<group>"; };
+		689C41F12C35C0BB00B5D34E /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		689C41F32C35C0CA00B5D34E /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		689C41F52C35C2EC00B5D34E /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
 		68BA98E92C2D495D00BCD943 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		68BA98EB2C2D4A1200BCD943 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		68BA98ED2C2D4EC500BCD943 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
@@ -61,9 +75,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		689C41E72C35AA8D00B5D34E /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */,
+			);
+			name = BottomSheet;
+			sourceTree = "<group>";
+		};
+		689C41EC2C35ADEC00B5D34E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				689C41F12C35C0BB00B5D34E /* SF-Pro-Text-Regular.otf */,
+				689C41F32C35C0CA00B5D34E /* SF-Pro-Display-Bold.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		68BA98E72C2D46F900BCD943 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				689C41EC2C35ADEC00B5D34E /* Fonts */,
 				848955892C2C5F2B00AFB43B /* AppDelegate.swift */,
 				8489558B2C2C5F2B00AFB43B /* SceneDelegate.swift */,
 				848955922C2C5F2D00AFB43B /* Assets.xcassets */,
@@ -87,6 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */,
+				689C41E82C35ABE700B5D34E /* UIViewController + Extensions.swift */,
+				689C41EA2C35AD0D00B5D34E /* UIFont + Extensions.swift */,
+				689C41F52C35C2EC00B5D34E /* Date + Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -108,6 +143,7 @@
 				68FEFA822C33184F00E2C16B /* IconButton.swift */,
 				68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */,
 				68D8F5612C34778400EF6855 /* CustomButton.swift */,
+				689C41EF2C35B30500B5D34E /* InfoTextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -131,14 +167,15 @@
 		848955882C2C5F2B00AFB43B /* M-Bank */ = {
 			isa = PBXGroup;
 			children = (
+				689C41E72C35AA8D00B5D34E /* BottomSheet */,
 				68FEFA872C3326F200E2C16B /* Views */,
 				68BA98F12C2D6CD600BCD943 /* Extensions */,
 				68BA98E82C2D493800BCD943 /* Models */,
 				68BA98E72C2D46F900BCD943 /* Common */,
 				8489558D2C2C5F2B00AFB43B /* HomeViewController.swift */,
 				68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */,
-				68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */,
 				68D8F56B2C352A2700EF6855 /* FilterBottomSheetViewController.swift */,
+				689C41E52C35AA7500B5D34E /* TransactionInfoViewController.swift */,
 			);
 			path = "M-Bank";
 			sourceTree = "<group>";
@@ -201,7 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689C41F22C35C0BB00B5D34E /* SF-Pro-Text-Regular.otf in Resources */,
 				848955962C2C5F2D00AFB43B /* LaunchScreen.storyboard in Resources */,
+				689C41F42C35C0CA00B5D34E /* SF-Pro-Display-Bold.otf in Resources */,
 				848955932C2C5F2D00AFB43B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,12 +261,17 @@
 				689C41E42C35A7DE00B5D34E /* Transactions.swift in Sources */,
 				68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */,
 				8489558A2C2C5F2B00AFB43B /* AppDelegate.swift in Sources */,
+				689C41EB2C35AD0D00B5D34E /* UIFont + Extensions.swift in Sources */,
+				689C41E62C35AA7500B5D34E /* TransactionInfoViewController.swift in Sources */,
+				689C41F02C35B30500B5D34E /* InfoTextField.swift in Sources */,
+				689C41E92C35ABE700B5D34E /* UIViewController + Extensions.swift in Sources */,
 				68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */,
 				68FEFA832C33184F00E2C16B /* IconButton.swift in Sources */,
 				8489558C2C2C5F2B00AFB43B /* SceneDelegate.swift in Sources */,
 				68FEFA892C33272300E2C16B /* CustomTextField.swift in Sources */,
 				68BA98F02C2D68D900BCD943 /* AccountTableViewCell.swift in Sources */,
 				68BA98EE2C2D4EC500BCD943 /* TransactionTableViewCell.swift in Sources */,
+				689C41F62C35C2EC00B5D34E /* Date + Extensions.swift in Sources */,
 				68BA98EC2C2D4A1200BCD943 /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

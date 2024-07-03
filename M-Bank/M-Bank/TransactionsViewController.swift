@@ -83,4 +83,10 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
         cell.configure(with: transactions.transactions[indexPath.row])
             return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = TransactionInfoViewController(with: transactions.transactions[indexPath.row])
+        presentBottomSheet(viewController: vc)
+    }
 }
