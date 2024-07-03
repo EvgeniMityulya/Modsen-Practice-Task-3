@@ -14,6 +14,8 @@
 		68BA98F32C2D6CFB00BCD943 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */; };
 		68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */; };
 		68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F5612C34778400EF6855 /* CustomButton.swift */; };
+		68D8F56A2C3529C700EF6855 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */; };
+		68D8F56C2C352A2700EF6855 /* DemoBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F56B2C352A2700EF6855 /* DemoBottomSheetViewController.swift */; };
 		68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */; };
 		68FEFA832C33184F00E2C16B /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA822C33184F00E2C16B /* IconButton.swift */; };
 		68FEFA852C331C8200E2C16B /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFA842C331C8200E2C16B /* FilterViewController.swift */; };
@@ -33,6 +35,8 @@
 		68BA98F22C2D6CFB00BCD943 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		68D8F55F2C3461AF00EF6855 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		68D8F5612C34778400EF6855 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		68D8F56B2C352A2700EF6855 /* DemoBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBottomSheetViewController.swift; sourceTree = "<group>"; };
 		68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		68FEFA822C33184F00E2C16B /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		68FEFA842C331C8200E2C16B /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				8489558D2C2C5F2B00AFB43B /* HomeViewController.swift */,
 				68FEFA802C3313B700E2C16B /* TransactionsViewController.swift */,
 				68FEFA842C331C8200E2C16B /* FilterViewController.swift */,
+				68D8F5692C3529C700EF6855 /* BottomSheetViewController.swift */,
+				68D8F56B2C352A2700EF6855 /* DemoBottomSheetViewController.swift */,
 			);
 			path = "M-Bank";
 			sourceTree = "<group>";
@@ -208,7 +214,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8489558E2C2C5F2B00AFB43B /* HomeViewController.swift in Sources */,
+				68D8F56A2C3529C700EF6855 /* BottomSheetViewController.swift in Sources */,
 				68D8F5602C3461AF00EF6855 /* CustomLabel.swift in Sources */,
+				68D8F56C2C352A2700EF6855 /* DemoBottomSheetViewController.swift in Sources */,
 				68BA98EA2C2D495D00BCD943 /* Account.swift in Sources */,
 				68FEFA812C3313B700E2C16B /* TransactionsViewController.swift in Sources */,
 				68D8F5622C34778400EF6855 /* CustomButton.swift in Sources */,
