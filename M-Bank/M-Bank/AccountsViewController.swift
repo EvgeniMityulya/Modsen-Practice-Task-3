@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol AccountsViewControllerDelegate: AnyObject {
+    func didSelectAccount(_ account: Account)
+}
+
 class AccountsViewController: BottomSheetViewController {
     
+    weak var delegate: AccountsViewControllerDelegate?
+    
     // MARK: - Properties
-    let accounts = Accounts()
+    var accounts: [Account] = []
+    var selectedAccount: Int?
     
     // MARK: - UI
     private let stackView: UIStackView = {
@@ -21,7 +28,7 @@ class AccountsViewController: BottomSheetViewController {
         return stackView
     }()
     
-    let submitButton = CustomButton(with: "Submit")
+    let submitButton = SolidButton(with: "Submit")
     
     let selectAccountLabel = TitleLabel(with: "Select the account", ofSize: 34)
     
@@ -36,20 +43,41 @@ class AccountsViewController: BottomSheetViewController {
     }()
     
     
-    // MARK: - Setup
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        accounts = DataManager.shared.fetchAccounts()
         setupUI()
     }
+    
+    // MARK: - Methods
+    private func calculateTableViewHeight() -> CGFloat {
+        let height = CGFloat(accounts.count) * (90 + 10)
+        if height > view.frame.height {
+            return view.frame.height - 200
+        }
+        return height
+    }
+    
+    // MARK: - Selectors
+    @objc func selectAccount() {
+        if let selectedAccount = selectedAccount {
+            DataManager.shared.setCurrentAccount(index: selectedAccount)
+            delegate?.didSelectAccount(accounts[selectedAccount])
+            dismissBottomSheet()
+        }
+    }
+}
 
+extension AccountsViewController {
     private func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
-    
+        
         contentView.addSubview(selectAccountLabel)
         contentView.addSubview(tableView)
         contentView.addSubview(submitButton)
-
+        
         NSLayoutConstraint.activate([
             selectAccountLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             selectAccountLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -66,30 +94,24 @@ class AccountsViewController: BottomSheetViewController {
             submitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-    private func calculateTableViewHeight() -> CGFloat {
-        let height = CGFloat(accounts.numberOfAccounts) * (90 + 10)
-        if height > view.frame.height {
-            return view.frame.height - 200
-        }
-        return height
-    }
-    
-    @objc private func handleOkayButton() {
-        self.dismissBottomSheet()
+        
+        submitButton.addTarget(self, action: #selector(selectAccount), for: .touchUpInside)
     }
 }
 
 
 extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedAccount = indexPath.section
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        accounts.numberOfAccounts
+        accounts.count
     }
     
     
@@ -98,34 +120,33 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: AccountTableViewCell.identifier,
-                for: indexPath
-            ) as? AccountTableViewCell else {
-                fatalError("cell did not")
-            }
-        cell.configure(with: accounts.account(at: indexPath.section)!, for: .selection)
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: AccountTableViewCell.identifier,
+            for: indexPath
+        ) as? AccountTableViewCell else {
+            fatalError("cell did not")
+        }
+        cell.configure(with: accounts[indexPath.section], for: .selection)
         return cell
     }
     
-    // Height between sections
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
         } else {
             return 10
         }
     }
-        
-     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-         nil
-    }
-        
-     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         nil
     }
-        
-     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         CGFloat.leastNormalMagnitude
     }
 }

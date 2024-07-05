@@ -9,21 +9,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private let transactions: [Transaction] = [
-       
-    ]
+    // MARK: - Properties
+    var currentAccount: Account! {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    private let currentAccount = Account(
-        id: UUID(),
-        name: "John Doe",
-        number: "12345678901234",
-        card: "1234567890123456",
-        transactions: [
-            Transaction(company: "Amazon", number: "123456789012", date: Date(), status: .executed, amount: 150.75),
-            Transaction(company: "Apple", number: "234567890123", date: Date(), status: .declined, amount: 200.50)
-        ]
-    )
-    
+    // MARK: - UI
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .insetGrouped)
         tv.allowsSelection = true
@@ -66,14 +59,29 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad()")
+        currentAccount = DataManager.shared.fetchCurrentAccount()
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    // MARK: - Selectors
     @objc func viewAll() {
         print("Button pressed!")
         let viewController = TransactionsViewController()
+        viewController.transactions = currentAccount.transactions
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -81,6 +89,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.view.addSubview(tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -107,8 +117,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            if transactions.count < 4 {
-                return transactions.count
+            if currentAccount.transactions.count < 4 {
+                return currentAccount.transactions.count
             } else {
                 return 4
             }
@@ -141,7 +151,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             ) as? TransactionTableViewCell else {
                 fatalError("cell did not")
             }
-            cell.configure(with: transactions[indexPath.row])
+            cell.configure(with: currentAccount.transactions[indexPath.row])
             return cell
         }
     }
@@ -153,7 +163,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let vc = AccountsViewController()
+            vc.delegate = self
+            presentBottomSheet(viewController: vc)
+        } else {
+            let vc = TransactionInfoViewController(with: currentAccount.transactions[indexPath.row])
             presentBottomSheet(viewController: vc)
         }
+    }
+}
+
+extension HomeViewController: AccountsViewControllerDelegate {
+    func didSelectAccount(_ account: Account) {
+        self.currentAccount = account
     }
 }

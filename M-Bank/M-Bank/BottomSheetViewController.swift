@@ -17,7 +17,7 @@ class BottomSheetViewController: UIViewController {
     /// Minimum spacing between the top edge and bottom sheet
     private var minTopSpacing: CGFloat = 80
     
-    // MARK: - Subviews
+    // MARK: - UI
     /// Main bottom sheet container view
      lazy var mainContainerView: UIView = {
         let view = UIView()
@@ -76,7 +76,6 @@ class BottomSheetViewController: UIViewController {
         view.backgroundColor = .clear
         view.addSubview(dimmedView)
         NSLayoutConstraint.activate([
-            // Set dimmedView edges to superview
             dimmedView.topAnchor.constraint(equalTo: view.topAnchor),
             dimmedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             dimmedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -165,7 +164,7 @@ class BottomSheetViewController: UIViewController {
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.mainContainerView.transform = .identity
         }
-        // add more animation duration for smoothness
+        // Add more animation duration for smoothness
         UIView.animate(withDuration: 0.4) { [weak self] in
             guard let self = self else { return }
             self.dimmedView.alpha = self.maxDimmedAlpha
@@ -182,7 +181,7 @@ class BottomSheetViewController: UIViewController {
         })
     }
     
-    // sub-view controller will call this function to set content
+    // Subview controller will call this function to set content
     func setContent(content: UIView) {
         contentView.addSubview(content)
         NSLayoutConstraint.activate([
