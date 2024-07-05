@@ -14,6 +14,10 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func isGreaterThanOrEqualTo(_ date: Date) -> Bool {
+            return self >= date
+        }
+    
     init?(day: Int, month: Int, year: Int) {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()

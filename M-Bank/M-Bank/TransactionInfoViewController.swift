@@ -9,6 +9,7 @@ import UIKit
 
 class TransactionInfoViewController: BottomSheetViewController {
     
+    // MARK: - Properties
     var transaction: Transaction
     
     // MARK: - UI
@@ -41,9 +42,9 @@ class TransactionInfoViewController: BottomSheetViewController {
     private let statusTextField = InfoTextField()
     private let amountTextField = InfoTextField()
     
-    private let okayButton = CustomButton(with: "Okay")
+    private let okayButton = SolidButton(with: "Okay")
     
-    // MARK: - Init and setup
+    // MARK: - Lifecycle
     init(with transaction: Transaction) {
         self.transaction = transaction
         super.init(nibName: nil, bundle: nil)
@@ -55,13 +56,23 @@ class TransactionInfoViewController: BottomSheetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupUI()
+        setupTargets()
     }
     
-    private func setupView() {
-        
+    // MARK: - Selectors
+    @objc private func handleOkayButton() {
+        self.dismissBottomSheet()
+    }
+}
+
+private extension TransactionInfoViewController {
+    
+    func setupTargets() {
         okayButton.addTarget(self, action: #selector(handleOkayButton), for: .touchUpInside)
-        
+    }
+    
+    func setupUI() {
         companyTextField.text = transaction.company
         numberTextField.text = transaction.number
         dateTextField.text = transaction.date.toString()
@@ -85,10 +96,14 @@ class TransactionInfoViewController: BottomSheetViewController {
         
         stackView.setCustomSpacing(50, after: amountTextField)
         
-        setContent(content: stackView)
-    }
-    
-    @objc private func handleOkayButton() {
-        self.dismissBottomSheet()
+        contentView.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
 }
+
+

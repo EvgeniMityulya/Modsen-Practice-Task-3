@@ -33,15 +33,15 @@ class CustomTextField: UITextField {
 //        self.rightView = iconContainerView
 //        self.rightViewMode = .always
     }
-    
-    func toggleRedBorder() {
-        if layer.borderColor == nil {
-            layer.borderColor = UIColor.systemRed.cgColor
-        } else {
-            layer.borderColor = nil
-        }
-    }
 
+    func setRedBorder() {
+        layer.borderColor = UIColor.systemRed.cgColor
+    }
+    
+    func setWhiteBorder() {
+        layer.borderColor = UIColor.secondaryLabel.cgColor
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }

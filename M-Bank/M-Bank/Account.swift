@@ -10,7 +10,7 @@ import Foundation
 struct Account {
     let id: UUID
     let name: String
-    let number: String // 14 digits
-    let card: String // 4 digits
+    let number: String
+    let card: String
     var transactions: [Transaction]
 }

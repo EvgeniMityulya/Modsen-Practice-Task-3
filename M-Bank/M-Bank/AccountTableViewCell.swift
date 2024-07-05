@@ -69,7 +69,7 @@ class AccountTableViewCell: UITableViewCell {
     func configure(with account: Account, for purpose: CellPurpose) {
         self.accountNameLabel.text = account.name
         self.accountNumberLabel.text = account.number
-        self.cardNumberLabel.text = account.card
+        self.cardNumberLabel.text = account.card.hideCardNumber()
         
         if purpose == .selection {
             chevronImageView.isHidden = true

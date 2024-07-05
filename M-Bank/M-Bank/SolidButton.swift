@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+class SolidButton: UIButton {
     
     init(with title: String) {
         super.init(frame: .zero)
@@ -21,5 +21,13 @@ class CustomButton: UIButton {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setActive() {
+        self.backgroundColor = .systemBlue.withAlphaComponent(1.0)
+    }
+    
+    func setInactive() {
+        self.backgroundColor = .systemBlue.withAlphaComponent(0.56)
     }
 }

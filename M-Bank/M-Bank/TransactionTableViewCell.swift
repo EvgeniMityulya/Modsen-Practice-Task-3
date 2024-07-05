@@ -89,7 +89,7 @@ class TransactionTableViewCell: UITableViewCell {
         
         func configure(with transaction: Transaction) {
             companyLabel.text = transaction.company
-            dateLabel.text = transaction.date.description
+            dateLabel.text = transaction.date.toString()
             amountLabel.text = "$\(transaction.amount)"
             statusLabel.text = transaction.status.toString()
             statusLabel.textColor = transaction.status.color()
